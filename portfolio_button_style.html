@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shivam Mishra Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: white;
+            padding-top: 80px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+        }
+
+        nav.scrolled {
+            padding: 12px 50px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav.scrolled .logo {
+            font-size: 20px;
+            padding: 8px 16px;
+        }
+
+        nav.scrolled .nav-links a {
+            font-size: 16px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            border: 2px solid #ff0000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff0000;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        .explore-btn {
+            position: relative;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 
+                0 8px 32px rgba(255, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -3px 10px rgba(255, 0, 0, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .explore-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.4) 0%,
+                rgba(255, 255, 255, 0.1) 30%,
+                transparent 60%
+            );
+            animation: liquid-flow 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .explore-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.4) 0%,
+                transparent 50%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            border-radius: 50px;
+            pointer-events: none;
+        }
+
+        .explore-btn:hover {
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 
+                0 15px 45px rgba(255, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -3px 15px rgba(255, 0, 0, 0.3);
+            color: #ff0000;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.25), 
+                rgba(240, 240, 240, 0.35));
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .explore-btn:hover::before {
+            animation: liquid-flow-fast 2s ease-in-out infinite;
+        }
+
+        .explore-btn:active {
+            transform: translateY(-4px) scale(1.04);
+        }
+
+        @keyframes liquid-flow {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.6;
+            }
+            33% {
+                transform: translate(30%, 20%) rotate(120deg);
+                opacity: 0.8;
+            }
+            66% {
+                transform: translate(-20%, 30%) rotate(240deg);
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes liquid-flow-fast {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(40%, 30%) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 
+                    0 8px 32px rgba(255, 0, 0, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                    inset 0 -3px 10px rgba(255, 0, 0, 0.15);
+            }
+            50% {
+                box-shadow: 
+                    0 8px 40px rgba(255, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                    inset 0 -3px 12px rgba(255, 0, 0, 0.3);
+            }
+        }
+
+        .explore-btn {
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .explore-btn:hover {
+            animation: none;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            margin-bottom: 60px;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff0000;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.5);
+            transform: translateY(-5px);
+        }
+
+        /* Programming Languages Section */
+        .languages-section {
+            padding: 100px 50px;
+            background: #1a1a1a;
+        }
+
+        .languages-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+        }
+
+        .language-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .language-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff0000;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+        }
+
+        .language-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .language-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .language-level {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+
+        .projects-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff0000;
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff0000, #8b0000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #ff0000;
+        }
+
+        .project-description {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: rgba(255, 0, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: transparent;
+            border: 2px solid #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: #ff0000;
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 50px;
+            background: #1a1a1a;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff0000;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 2px solid #ff0000;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .submit-btn:hover {
+            background: #ff0000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #0d0d0d;
+            padding: 30px;
+            text-align: center;
+            opacity: 0.7;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Tablet and below (1024px) */
+        @media (max-width: 1024px) {
+            .about-section,
+            .languages-section,
+            .projects-section,
+            .contact-section {
+                padding: 80px 30px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        /* Tablet (768px) */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            nav {
+                padding: 15px 25px;
+            }
+
+            nav.scrolled {
+                padding: 10px 25px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: calc(100vh - 70px);
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 40px 20px;
+                gap: 30px;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .explore-btn {
+                padding: 15px 40px;
+                font-size: 18px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .languages-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .about-section,
+            .languages-section,
+            .projects-section,
+            .contact-section {
+                padding: 60px 25px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Mobile (480px) */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 18px;
+                padding: 8px 15px;
+            }
+
+            nav.scrolled .logo {
+                font-size: 16px;
+                padding: 6px 12px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .explore-btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 40px;
+            }
+
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .about-text p {
+                font-size: 0.95rem;
+            }
+
+            .languages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .language-card {
+                padding: 25px;
+            }
+
+            .language-icon {
+                font-size: 2.5rem;
+            }
+
+            .project-card {
+                margin: 0 10px;
+            }
+
+            .project-image {
+                height: 150px;
+                font-size: 2.5rem;
+            }
+
+            .project-content {
+                padding: 20px;
+            }
+
+            .project-title {
+                font-size: 1.3rem;
+            }
+
+            .tech-tag {
+                font-size: 0.8rem;
+                padding: 4px 12px;
+            }
+
+            .contact-form {
+                padding: 25px 15px;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .submit-btn {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .about-section,
+            .languages-section,
+            .projects-section,
+            .contact-section {
+                padding: 50px 15px;
+            }
+
+            .nav-links {
+                width: 80%;
+            }
+        }
+
+        /* Very small devices (360px) */
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                font-size: 16px;
+                padding: 6px 12px;
+            }
+
+            .explore-btn {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="logo">Shivam Mishra</div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#languages">Languages</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p class="subtitle">This is the brief info. about me.</p>
+        <button class="explore-btn" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Explore</button>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Get to know more about my skills and experience</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Hi, I'm Shivam Mishra</h3>
+                <p>I'm a passionate Full Stack Web Developer with expertise in creating dynamic, responsive, and user-friendly web applications. With a strong foundation in both front-end and back-end technologies, I bring ideas to life through clean code and innovative solutions.</p>
+                
+                <p>I specialize in building scalable web applications using modern frameworks and technologies. My approach combines creative problem-solving with technical expertise to deliver exceptional digital experiences.</p>
+                
+                <p>When I'm not coding, I'm exploring new technologies, contributing to open-source projects, and continuously learning to stay ahead in the ever-evolving world of web development.</p>
+            </div>
+            
+            <div>
+                <h3 style="color: #ff0000; margin-bottom: 20px;">Core Skills</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong>Frontend Development</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">HTML, CSS, JavaScript, React</p>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Backend Development</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Node.js, Express, APIs</p>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Database Management</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">MongoDB, MySQL, PostgreSQL</p>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Tools & Technologies</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Git, Docker, VS Code</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programming Languages Section -->
+    <section id="languages" class="languages-section">
+        <h2 class="section-title">Programming Languages</h2>
+        <p class="section-subtitle">Technologies I work with</p>
+        
+        <div class="languages-grid">
+            <div class="language-card">
+                <div class="language-icon">⚛️</div>
+                <div class="language-name">JavaScript</div>
+                <div class="language-level">Advanced</div>
+            </div>
+            <div class="language-card">
+                <div class="language-icon">🐍</div>
+                <div class="language-name">Python</div>
+                <div class="language-level">Intermediate</div>
+            </div>
+            <div class="language-card">
+                <div class="language-icon">☕</div>
+                <div class="language-name">Java</div>
+                <div class="language-level">Intermediate</div>
+            </div>
+            <div class="language-card">
+                <div class="language-icon">🎨</div>
+                <div class="language-name">HTML/CSS</div>
+                <div class="language-level">Expert</div>
+            </div>
+            <div class="language-card">
+                <div class="language-icon">📘</div>
+                <div class="language-name">TypeScript</div>
+                <div class="language-level">Intermediate</div>
+            </div>
+            <div class="language-card">
+                <div class="language-icon">🗄️</div>
+                <div class="language-name">SQL</div>
+                <div class="language-level">Advanced</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">My Projects</h2>
+        <p class="section-subtitle">Here are some of my recent works</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🌐</div>
+                <div class="project-content">
+                    <h3 class="project-title">E-Commerce Platform</h3>
+                    <p class="project-description">A full-stack e-commerce solution with payment integration, user authentication, and real-time inventory management.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">📱</div>
+                <div class="project-content">
+                    <h3 class="project-title">Social Media Dashboard</h3>
+                    <p class="project-description">Analytics dashboard for social media metrics with real-time data visualization and reporting features.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">🎮</div>
+                <div class="project-content">
+                    <h3 class="project-title">Task Management App</h3>
+                    <p class="project-description">Collaborative task management application with drag-and-drop functionality and team collaboration features.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Tailwind</span>
+                    </div>
+                    <a href="#" class="project-link">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Let's work together on your next project</p>
+        
+        <div class="contact-container">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            
+            <div class="contact-info">
+                <p>Or email me directly at: <strong style="color: #ff0000;">shivammishracs224@gmail.com</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Shivam Mishra. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // Close mobile menu
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:shivammishracs224@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
